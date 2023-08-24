@@ -1,0 +1,150 @@
+$id-color: #696d74;
+$tag-color: #6a6e75;
+$body-color: #f4f5f8;
+
+.tasks-page {
+  width: 100vw;
+}
+
+.header {
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.SectionHeader {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-display-btn {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.section__group-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tasks-page__body {
+  display: grid;
+  padding: 1rem;
+  //   padding-right: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2rem;
+  background-color: $body-color;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.display-btn {
+  padding: 0.5rem;
+  font-size: 1.7rem;
+}
+
+.task-card {
+  padding: 1rem;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 10px lightgray;
+  background-color: white;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.task-id {
+  font-size: 1rem;
+  color: $id-color;
+  margin: 0.5rem;
+}
+
+.task-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.task-tag {
+  color: $tag-color;
+  padding: 0.25rem;
+  margin: 0.5rem;
+  font-size: 0.75em;
+  width: fit-content;
+  border: 1px solid $tag-color;
+  border-radius: 5px;
+}
+
+@mixin circle($size: 10px) {
+  width: $size;
+  height: $size;
+  display: inline-block;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.circular-icon {
+  &__name {
+    @include circle(30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: moccasin;
+    position: relative;
+    &--available {
+      @include circle(12px);
+      z-index: 1;
+      background-color: orange;
+      bottom: 0px;
+      right: 0px;
+    }
+    &--unavailable {
+      @include circle(12px);
+      z-index: 1;
+      background-color: lightgrey;
+      bottom: 0px;
+      right: 0px;
+    }
+  }
+  &__tag {
+    @include circle();
+    position: relative;
+    background-color: #bec2c8;
+  }
+}
+
+.top-dropdown {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 15%;
+  display: flex;
+  //   flex-direction: column;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  padding: 0.5rem;
+  z-index: 1;
+  position: absolute;
+}
+
+.options {
+  font-size: 1.25rem;
+}
