@@ -39,7 +39,7 @@ export default function DropDown() {
   const [visiblility, setvisiblility] = useState("hidden");
 
   function toggleDropdown() {
-    console.log(visiblility);
+    // console.log(visiblility);
     if (visiblility === "hidden") {
       setvisiblility("visible");
     } else {

@@ -63,7 +63,7 @@ export default function Tasks() {
     return sorted;
   }, {});
 
-  console.log(sortedTasks);
+  // console.log(sortedTasks);
 
   return (
     <div className="tasks-page">
