@@ -1,3 +1,11 @@
+@use "sass:map";
+
+$breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+);
+
 $id-color: #696d74;
 $tag-color: #6a6e75;
 $body-color: #f4f5f8;
@@ -37,15 +45,28 @@ $body-color: #f4f5f8;
   cursor: pointer;
 }
 
+@mixin apply_mediaquery_1($key) {
+  $size: map.get($breakpoints, $key);
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}
+
 .tasks-page__body {
   display: grid;
   padding: 1rem;
-  //   padding-right: 1rem;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 2rem;
   background-color: $body-color;
   height: 100%;
   overflow-y: scroll;
+  @include apply_mediaquery_1(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include apply_mediaquery_1(small) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .display-btn {
@@ -136,8 +157,8 @@ $body-color: #f4f5f8;
   border: 1px solid lightgray;
   border-radius: 5px;
   width: 15%;
+  min-width: 20rem;
   display: flex;
-  //   flex-direction: column;
   font-size: 1.5rem;
   justify-content: space-between;
   padding: 0.5rem;
