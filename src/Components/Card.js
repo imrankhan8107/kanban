@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Card({ task, user }) {
-  console.log(user);
+  // console.log(user);
   function getFirstChars(inputText) {
     const words = inputText.split(" ");
     const firstChars = words.map((word) => word.charAt(0).toUpperCase());
