@@ -1,5 +1,9 @@
 @use "sass:map";
 
+.App {
+  min-height: 100vh;
+}
+
 $breakpoints: (
   small: 576px,
   medium: 768px,
@@ -12,6 +16,7 @@ $body-color: #f4f5f8;
 
 .tasks-page {
   width: 100vw;
+  height: 100%;
 }
 
 .header {

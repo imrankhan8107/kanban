@@ -1,39 +1,35 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { selectGrouping, selectOrdering } from "../store/tasks";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { selectGrouping, selectOrdering } from "../store/tasks";
 import TuneIcon from "@mui/icons-material/Tune";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function DropDown() {
-  //   const { grouping, ordering } = useSelector((state) => state.taskStore);
-  const grouping = useRef(localStorage["grouping"] ?? "status");
-  const ordering = useRef(localStorage["ordering"] ?? "priority");
+export default function DropDown({
+  grouping,
+  ordering,
+  setgrouping,
+  setordering,
+}) {
   const dispatch = useDispatch();
+  // const [grouping, setgrouping] = useState("status");
+  // const [ordering, setordering] = useState("priority");
 
   useEffect(() => {
-    if (localStorage["grouping"]) {
-      dispatch(selectGrouping(localStorage["grouping"]));
-      grouping.current = localStorage["grouping"];
-    } else {
-      localStorage["grouping"] = "status";
-      grouping.current = "status";
-    }
-    if (localStorage["ordering"]) {
-      dispatch(selectOrdering(localStorage["ordering"]));
-      ordering.current = localStorage["ordering"];
-    } else {
-      localStorage["ordering"] = "priority";
-      ordering.current = "priority";
-    }
-  }, [grouping, ordering, dispatch]);
+    setgrouping(localStorage.getItem("grouping") || "status");
+    setordering(localStorage.getItem("ordering") || "priority");
+  }, []);
 
   function handleGroupingChange(e) {
-    dispatch(selectGrouping(e.target.value));
-    localStorage["grouping"] = e.target.value;
+    const newSelectedOption = e.target.value;
+    // dispatch(selectGrouping(newSelectedOption));
+    localStorage.setItem("grouping", newSelectedOption);
+    setgrouping(newSelectedOption);
+    // localStorage["grouping"] = e.target.value;
   }
   function handleOrderingChange(e) {
-    dispatch(selectOrdering(e.target.value));
+    // dispatch(selectOrdering(e.target.value));
     localStorage["ordering"] = e.target.value;
+    setordering(e.target.value);
   }
 
   const [visiblility, setvisiblility] = useState("hidden");
@@ -61,7 +57,7 @@ export default function DropDown() {
           value={grouping}
         >
           <label>Grouping</label>
-          <select>
+          <select value={grouping}>
             <option value="status" className="options">
               Status
             </option>
@@ -79,7 +75,7 @@ export default function DropDown() {
           value={ordering}
         >
           <label>Ordering</label>
-          <select>
+          <select value={ordering}>
             <option value="priority" className="options">
               Priority
             </option>

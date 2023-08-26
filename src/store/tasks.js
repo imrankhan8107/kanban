@@ -27,19 +27,19 @@ const taskSlice = createSlice({
       tickets: [],
       users: [],
     },
-    grouping: localStorage["grouping"] ?? "status",
-    ordering: localStorage["ordering"] ?? "priority",
+    // grouping: localStorage["grouping"] ?? "status",
+    // ordering: localStorage["ordering"] ?? "priority",
   },
   reducers: {
     // standard reducer logic, with auto-generated action types per reducer
-    selectGrouping: (state, action) => {
-      localStorage["grouping"] = action.payload;
-      state.grouping = action.payload;
-    },
-    selectOrdering: (state, action) => {
-      localStorage["ordering"] = action.payload;
-      state.ordering = action.payload;
-    },
+    // selectGrouping: (state, action) => {
+    //   localStorage["grouping"] = action.payload;
+    //   state.grouping = action.payload;
+    // },
+    // selectOrdering: (state, action) => {
+    //   localStorage["ordering"] = action.payload;
+    //   state.ordering = action.payload;
+    // },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -51,5 +51,5 @@ const taskSlice = createSlice({
 });
 
 export default taskSlice.reducer;
-export const { selectGrouping, selectOrdering } = taskSlice.actions;
+// export const { selectGrouping, selectOrdering } = taskSlice.actions;
 export { fetchTasks };

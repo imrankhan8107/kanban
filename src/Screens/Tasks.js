@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchTasks } from "../store/tasks";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Components/Card";
@@ -8,7 +8,14 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 export default function Tasks() {
   const dispatch = useDispatch();
-  const { grouping, ordering } = useSelector((state) => state.taskStore);
+  // const grouping = localStorage.getItem("grouping") || "status";
+  // const ordering = localStorage.getItem("ordering") || "priority";
+  const [grouping, setgrouping] = useState(
+    localStorage.getItem("grouping") || "status"
+  );
+  const [ordering, setordering] = useState(
+    localStorage.getItem("ordering", "priority")
+  );
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
@@ -68,7 +75,12 @@ export default function Tasks() {
   return (
     <div className="tasks-page">
       <div className="header">
-        <DropDown grouping={grouping} ordering={ordering} />
+        <DropDown
+          grouping={grouping}
+          ordering={ordering}
+          setgrouping={setgrouping}
+          setordering={setordering}
+        />
       </div>
       <div className="tasks-page__body">
         {Object.keys(sortedTasks).map((group, index) => (
